@@ -71,7 +71,7 @@ const data = await response.json();
 if (args.j) {
     // if the user didn't specify a location, then give an error
     if (!args.n | args.s | args.e | args.w) {
-        console.log("Error: Please include a location");
+        console.log("Latitude must be in range");
         process.exit(0);
     }
 
