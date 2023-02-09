@@ -71,5 +71,20 @@ returns hours for 7 days starting from today:
 const response = await fetch(url);
 const data = await response.json();
 
+// output
+// galosh statement
+// TODO: First, debug statement printing out the array value
+// TODO: on the day we want. 
+// TODO: Then, craft the galosh log according to the instructions. AGTG.
 // ? DEBUG
-console.log(data);
+
+// date statement
+const days = args.d 
+
+if (days == 0) {
+  console.log("today.")
+} else if (days > 1) {
+  console.log("in " + days + " days.")
+} else {
+  console.log("tomorrow.")
+}
