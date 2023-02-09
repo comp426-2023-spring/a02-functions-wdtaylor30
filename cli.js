@@ -53,12 +53,6 @@ if (args.d) {
     day = 1
 }
 
-// pretty json
-if (args.j) {
-    pretty = args.j; 
-} else {
-    pretty = "";
-}
 
 //construct url
 var url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&timezone=${tz}&daily=precipitation_hours`
@@ -71,12 +65,33 @@ returns hours for 7 days starting from today:
 const response = await fetch(url);
 const data = await response.json();
 
+
 // output
+// optional: json
+if (args.j) {
+    // if the user didn't specify a location, then give an error
+    if (!args.n | args.s | args.e | args.w) {
+        console.log("Error: Please include a location");
+        process.exit(1);
+    }
+
+    // otherwise, continue as normal
+    console.log(data);
+    process.exit(0);
+} else {
+}
+
 // galosh statement
 // TODO: First, debug statement printing out the array value
 // TODO: on the day we want. 
 // TODO: Then, craft the galosh log according to the instructions. AGTG.
-// ? DEBUG
+var precip = data.daily.precipitation_hours[day];
+
+if (precip > 0) {
+    console.log("You might need your galoshes ");
+} else {
+    console.log("You will not need your galoshes ");
+}
 
 // date statement
 const days = args.d 
