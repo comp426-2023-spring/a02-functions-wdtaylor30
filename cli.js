@@ -35,6 +35,8 @@ time zone: guess if -z isn't specified
 
 // pull variables from arguments
 // location
+var lat, long, tz, day, pretty = null;
+
 if (args.n) { lat = args.n; }
 if (args.s) { lat = args.s; }
 if (args.e) { long = args.e; }
@@ -59,21 +61,15 @@ if (args.j) {
 }
 
 //construct url
-// TODO: From here, return to api site to construct your URL.
-// TODO: I'd say halfway done; glory to God.
-// https://open-meteo.com/en/docs#api_form
-url = "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&timezone=${tz}&daily=precipitation_hours"
-
-
+var url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&timezone=${tz}&daily=precipitation_hours`
 
 /* output of interest: precipitation hours
 returns hours for 7 days starting from today:
 "precipitation_hours": [x, x, x, x, x, x, x]*/
 
 // construct fetch call
-
 const response = await fetch(url);
 const data = await response.json();
 
 // ? DEBUG
-console.log(response);
+console.log(data);
