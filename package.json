@@ -2,12 +2,13 @@
   "name": "cli",
   "version": "1.0.0",
   "description": "Galoshes example.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "node cli.js -n 35.92 -w 79.05 -z America/New_York"
   },
   "repository": {
-    "type": "module",
+    "type": "git",
     "url": "git+https://github.com/comp426-2023-spring/a02-functions-wdtaylor30.git"
   },
   "author": "William D. Taylor",
@@ -23,5 +24,5 @@
   },
   "bin": {
     "galosh.js": "./cli.js"
-  },
+  }
 }

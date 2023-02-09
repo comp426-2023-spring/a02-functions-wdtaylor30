@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-// require minimist, moment, and fetch
-var minimist = require('minimist');
-var moment = require('moment-timezone');
-var fetch = require('node-fetch');
+// import (not require) minimist, moment, and fetch
+import minimist from 'minimist';
+import moment from 'moment-timezone';
+import fetch from 'node-fetch';
 
 // use minimist to process options
 var args = minimist(process.argv.slice(2), {
@@ -35,14 +35,14 @@ time zone: guess if -z isn't specified
 
 // pull variables from arguments
 // location
-if (args.n) { latitude = args.n; }
-if (args.s) { latitude = args.s; }
-if (args.e) { longitude = args.e; }
-if (args.w) { longitude = args.w; }
+if (args.n) { lat = args.n; }
+if (args.s) { lat = args.s; }
+if (args.e) { long = args.e; }
+if (args.w) { long = args.w; }
 
 // timezone
-timezone = moment.tz.guess();
-if (args.z) { timezone = args.z; }
+tz = moment.tz.guess();
+if (args.z) { tz = args.z; }
 
 // day
 if (args.d) {
@@ -62,6 +62,8 @@ if (args.j) {
 // TODO: From here, return to api site to construct your URL.
 // TODO: I'd say halfway done; glory to God.
 // https://open-meteo.com/en/docs#api_form
+url = "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&timezone=${tz}&daily=precipitation_hours"
+
 
 
 /* output of interest: precipitation hours
@@ -69,4 +71,9 @@ returns hours for 7 days starting from today:
 "precipitation_hours": [x, x, x, x, x, x, x]*/
 
 // construct fetch call
-const response = await fetch(url)
+
+const response = await fetch(url);
+const data = await response.json();
+
+// ? DEBUG
+console.log(response);
