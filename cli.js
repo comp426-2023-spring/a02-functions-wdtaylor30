@@ -72,7 +72,7 @@ if (args.j) {
     // if the user didn't specify a location, then give an error
     if (!args.n | args.s | args.e | args.w) {
         console.log("Error: Please include a location");
-        process.exit(1);
+        process.exit(0);
     }
 
     // otherwise, continue as normal
